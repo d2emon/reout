@@ -28,6 +28,7 @@ int GameWindow::load()
 
     N = lines.size();
     pos = 0;
+    playerX = 0;
 
     return 1;
 }
@@ -49,6 +50,9 @@ int GameWindow::run()
                 window.close();
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) playerX += 200;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left )) playerX -= 200;
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up  )) pos += 200;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) pos -= 200;
 
@@ -63,7 +67,7 @@ int GameWindow::run()
 void GameWindow::show()
 {
     // Clear screen
-    window.clear();
+    window.clear(sf::Color::Black);
     // window.draw(bg);
 
     // drawQuad(sf::Color::Green, 500, 500, 200, 500, 300, 100);
@@ -71,7 +75,7 @@ void GameWindow::show()
     for (int n=startPos; n < startPos + 300; n++)
     {
         Line &l = lines[n % N];
-        l.project(0, 1500, pos);
+        l.project(playerX, 1500, pos);
 
         sf::Color grass  = (n/3) % 2 ? sf::Color( 16, 200,  16) : sf::Color(  0, 154,   0);
         sf::Color rumble = (n/3) % 2 ? sf::Color(255, 255, 255) : sf::Color(  0,   0,   0);

@@ -39,6 +39,7 @@ class GameWindow : public D2Window
         int N;
         int pos;
         int startPos;
+        int playerX;
 
         int load();
         int run();
