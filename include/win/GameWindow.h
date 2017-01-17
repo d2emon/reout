@@ -42,6 +42,9 @@ class GameWindow : public D2Window
         int startPos;
         int playerX;
 
+        int camH;
+        int maxy;
+
         float x;
         float dx;
 
