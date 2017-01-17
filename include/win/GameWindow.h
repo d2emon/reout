@@ -12,8 +12,9 @@ struct Line
     float x, y, z;
     float X, Y, W;
     float scale;
+    float curve;
 
-    Line() {x=y=z=0;}
+    Line() {curve=x=y=z=0;}
 
     void project(int camX, int camY, int camZ)
     {
@@ -40,6 +41,9 @@ class GameWindow : public D2Window
         int pos;
         int startPos;
         int playerX;
+
+        float x;
+        float dx;
 
         int load();
         int run();

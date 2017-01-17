@@ -23,6 +23,9 @@ int GameWindow::load()
         Line line;
         line.z = i * segL;
 
+        if (i>300 && i<700)
+            line.curve = 0.5;
+
         lines.push_back(line);
     }
 
@@ -70,12 +73,18 @@ void GameWindow::show()
     window.clear(sf::Color::Black);
     // window.draw(bg);
 
+    x=0;
+    dx=0;
+
     // drawQuad(sf::Color::Green, 500, 500, 200, 500, 300, 100);
 
     for (int n=startPos; n < startPos + 300; n++)
     {
         Line &l = lines[n % N];
-        l.project(playerX, 1500, pos);
+        l.project(playerX - x, 1500, pos);
+
+        x += dx;
+        dx += l.curve;
 
         sf::Color grass  = (n/3) % 2 ? sf::Color( 16, 200,  16) : sf::Color(  0, 154,   0);
         sf::Color rumble = (n/3) % 2 ? sf::Color(255, 255, 255) : sf::Color(  0,   0,   0);
