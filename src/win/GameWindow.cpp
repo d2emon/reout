@@ -77,7 +77,7 @@ void GameWindow::show()
 {
     // Clear screen
     window.clear(sf::Color::Black);
-    // window.draw(bg);
+    window.draw(bg);
 
     startPos = pos / segL;
     camH = 1500 + lines[startPos].y;

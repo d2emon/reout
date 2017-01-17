@@ -12,5 +12,8 @@ sf::String bgFile()
 Background::Background()
 {
     if (texture.loadFromFile(bgFile()))
+    {
+        texture.setRepeated(true);
         setTexture(texture);
+    }
 }
