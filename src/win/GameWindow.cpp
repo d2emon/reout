@@ -65,6 +65,11 @@ int GameWindow::run()
         show();
     }
 
+    while (pos >= N*segL)
+        pos -= N*segL;
+    while (pos < 0)
+        pos += N*segL;
+
     return 1;
 }
 
@@ -85,7 +90,7 @@ void GameWindow::show()
     for (int n=startPos; n < startPos + 300; n++)
     {
         Line &l = lines[n % N];
-        l.project(playerX - x, camH, pos);
+        l.project(playerX - x, camH, pos - (n >= N ? N*segL : 0));
 
         x += dx;
         dx += l.curve;
