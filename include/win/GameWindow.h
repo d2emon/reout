@@ -37,6 +37,8 @@ class GameWindow : public D2Window
         int grid[6][6];
         std::vector<Line> lines;
         int N;
+        int pos;
+        int startPos;
 
         int load();
         int run();
