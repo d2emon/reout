@@ -15,8 +15,9 @@ GameWindow::~GameWindow()
 
 int GameWindow::load()
 {
-    if (!texture.loadFromFile("res/1.png"))
+    if (!texture.loadFromFile("res/5.png"))
         return EXIT_FAILURE;
+    treeSprite.setTexture(texture);
 
     for (int i=0; i < 1600; i++)
     {
@@ -29,8 +30,13 @@ int GameWindow::load()
         if (i>750)
         line.y = sin(i/30.0) * 1500;
 
+        printf("%d\t", i%20);
+        if (i%2 == 0)
+            line.sprite = treeSprite;
+
         lines.push_back(line);
     }
+    printf("\n");
 
     N = lines.size();
     pos = 0;
@@ -109,6 +115,14 @@ void GameWindow::show()
         drawQuad(rumble, p.X, p.Y, p.W * 1.2,  l.X, l.Y, l.W * 1.2 );
         drawQuad(road,   p.X, p.Y, p.W,        l.X, l.Y, l.W       );
     }
+
+    for (int n=startPos + 300; n > startPos; n--)
+    {
+        // lines[n%N].sprite = treeSprite;
+        lines[n%N].drawSprite(window);
+    }
+
+    // window.draw(treeSprite);
 
     // Update the window
     window.display();
